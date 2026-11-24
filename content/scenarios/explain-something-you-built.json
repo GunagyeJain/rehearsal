@@ -1,0 +1,98 @@
+{
+  "id": "explain-something-you-built",
+  "track": "fundamentals",
+  "title": "Explain something you built",
+  "difficulty": 2,
+  "description": "Explain a project you built to someone technical but outside your field, without jargon.",
+  "userInputs": [
+    {
+      "key": "project",
+      "label": "What is the project called?",
+      "type": "text",
+      "placeholder": "Campus bike-share tracker",
+      "required": true
+    }
+  ],
+  "brief": {
+    "scene": "Someone technical but outside your field has stopped by your desk. They have asked what you have been working on: {{project}}.",
+    "yourGoal": "Explain what it is, why you built it, and what was hardest, without jargon."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A curious, friendly person from outside your field",
+      "generate": "Ask what {{project}} is and why they built it. Use plain words and no jargon. One or two sentences only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 120,
+        "minSeconds": 30,
+        "silenceStopSeconds": 3
+      }
+    },
+    {
+      "index": 1,
+      "speaker": "ai",
+      "persona": "A curious, friendly person from outside your field",
+      "generate": "Ask what the hardest part of building it was. One question only. Do not reference anything the person said. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 20,
+        "silenceStopSeconds": 3
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          50,
+          190
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "clarity",
+        "label": "Clarity without jargon",
+        "criterion": "A listener outside the speaker's field could follow the explanation. Technical terms are either avoided or explained in plain words, and the answer states what the project is and why it exists before going into detail."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 4 seconds",
+    "Finish between 50 seconds and 3 min 10 sec",
+    "Explain it so someone outside your field could follow, with no unexplained jargon"
+  ]
+}

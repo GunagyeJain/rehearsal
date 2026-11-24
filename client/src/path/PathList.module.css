@@ -1,0 +1,271 @@
+/* The path list: home and onboarding reveal. Tokens only (spec/design.md). */
+
+.list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* A hairline spine through the index column ties the rows into one sequence. */
+.list::before {
+  content: '';
+  position: absolute;
+  top: var(--space-6);
+  bottom: var(--space-6);
+  left: calc(var(--space-4) + var(--space-4));
+  width: var(--border-width);
+  background: var(--border);
+}
+
+.item {
+  position: relative;
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--space-8) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--control-lg);
+  padding: var(--space-4);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-lg);
+  transition:
+    background-color var(--duration-state) var(--ease-out),
+    border-color var(--duration-state) var(--ease-out),
+    box-shadow var(--duration-state) var(--ease-out),
+    opacity var(--duration-state) var(--ease-out);
+}
+
+.index {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-8);
+  height: var(--space-8);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  font-family: var(--font-numeric);
+  font-size: var(--size-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--size-md);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  color: var(--text);
+}
+
+.meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  white-space: nowrap;
+}
+
+.dot {
+  width: var(--space-1);
+  height: var(--space-1);
+  border-radius: var(--radius-round);
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.statusMark {
+  display: inline-flex;
+  align-items: center;
+}
+
+.end {
+  display: inline-flex;
+  align-items: center;
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-min);
+  height: var(--touch-min);
+  color: var(--text-faint);
+}
+
+.markPassed {
+  color: var(--pass);
+}
+
+/* ---------------------------------------------------------- states */
+
+.passed .title,
+.passed .meta {
+  color: var(--text-muted);
+}
+
+.passed .index {
+  border-color: transparent;
+  background: var(--bg-sunken);
+}
+
+/* Locked rows stay readable (text-muted, never faded text): only the index and lock glyph recede. */
+.locked .title {
+  font-weight: var(--weight-regular);
+  color: var(--text-muted);
+}
+
+.locked .meta {
+  color: var(--text-muted);
+}
+
+.locked .index {
+  color: var(--text-muted);
+}
+
+.skipped .status {
+  color: var(--text);
+}
+
+.failed .status {
+  color: var(--text);
+}
+
+/* The row to do next: the only full-contrast surface on the list. */
+.current {
+  background: var(--bg-raised);
+  border-color: var(--border);
+  box-shadow: var(--shadow-raised);
+}
+
+.current .index {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--bg);
+}
+
+.current .title {
+  font-size: var(--size-lg);
+  letter-spacing: var(--tracking-tight);
+}
+
+.upcoming .title {
+  font-weight: var(--weight-regular);
+}
+
+/* ---------------------------------------------------------- action */
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-min);
+  padding: 0 var(--space-4);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration-state) var(--ease-out),
+    border-color var(--duration-state) var(--ease-out);
+}
+
+/* Stretched link: the whole row is the tap target for its one action. */
+.action::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+}
+
+.action:focus-visible {
+  outline: none;
+}
+
+.action:focus-visible::after {
+  outline: var(--focus-width) solid var(--text);
+  outline-offset: var(--focus-offset);
+}
+
+.actionPrimary {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--bg);
+}
+
+.tappable:hover {
+  border-color: var(--border-strong);
+}
+
+.tappable:hover .action:not(.actionPrimary) {
+  background: var(--bg-sunken);
+}
+
+.badge {
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------- reveal motion */
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal .item {
+    animation: row-in var(--duration-screen) var(--ease-out) both;
+    animation-delay: calc(var(--row-index) * var(--duration-state) / 3);
+  }
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-2));
+  }
+}
+
+@media (max-width: 30rem) {
+  .row {
+    gap: var(--space-3);
+    padding: var(--space-3);
+  }
+
+  .list::before {
+    left: calc(var(--space-3) + var(--space-4));
+  }
+
+  .action {
+    padding: 0 var(--space-3);
+  }
+
+  .current .title {
+    font-size: var(--size-md);
+  }
+}

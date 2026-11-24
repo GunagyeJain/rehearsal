@@ -1,0 +1,125 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+}
+
+.labelAside {
+  font-weight: var(--weight-regular);
+  color: var(--text-muted);
+}
+
+.control {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-raised);
+  color: var(--text);
+  border: var(--border-width) solid var(--border-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--size-md);
+  line-height: var(--leading-snug);
+  appearance: none;
+  transition:
+    border-color var(--duration-state) var(--ease-out),
+    box-shadow var(--duration-state) var(--ease-out),
+    background-color var(--duration-state) var(--ease-out);
+}
+
+.control::placeholder {
+  color: var(--text-muted);
+}
+
+.control:hover:not(:disabled) {
+  border-color: var(--text-faint);
+}
+
+/* Inputs get an inset ring instead of the global offset outline: it reads as part of the field. */
+.control:focus-visible {
+  outline: none;
+  border-color: var(--text);
+  box-shadow: 0 0 0 var(--focus-width) var(--text);
+  border-radius: var(--radius-md);
+}
+
+.control:disabled {
+  background: var(--bg-sunken);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.hasError .control {
+  border-color: var(--fail);
+}
+
+.hasError .control:focus-visible {
+  box-shadow: 0 0 0 var(--border-width) var(--fail);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: calc(var(--touch-min) * 2.5);
+  line-height: var(--leading-body);
+}
+
+.selectWrap {
+  position: relative;
+}
+
+.select {
+  padding-right: calc(var(--space-4) + var(--icon-size) + var(--space-2));
+  cursor: pointer;
+}
+
+.chevron {
+  position: absolute;
+  top: 50%;
+  right: var(--space-4);
+  transform: translateY(-50%);
+  display: inline-flex;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.hint {
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--size-sm);
+  color: var(--text);
+}
+
+.error > svg {
+  margin-top: var(--icon-optical-offset);
+  color: var(--fail);
+}
+
+.trailingWrap {
+  position: relative;
+}
+
+.withTrailing {
+  padding-right: calc(var(--touch-min) + var(--space-2));
+}
+
+.trailing {
+  position: absolute;
+  top: 50%;
+  right: var(--space-1);
+  transform: translateY(-50%);
+  display: inline-flex;
+}

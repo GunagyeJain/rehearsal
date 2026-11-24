@@ -1,0 +1,86 @@
+{
+  "id": "summarise-under-time-pressure",
+  "track": "fundamentals",
+  "title": "Summarise under time pressure",
+  "difficulty": 3,
+  "description": "Summarise a topic in 60 seconds and land a real conclusion before the timer ends.",
+  "userInputs": [
+    {
+      "key": "topic",
+      "label": "What will you summarise?",
+      "type": "text",
+      "placeholder": "How vaccines work",
+      "required": true
+    }
+  ],
+  "brief": {
+    "scene": "The timer is visible and runs for 60 seconds. It ends the recording. The topic is {{topic}}.",
+    "yourGoal": "Summarise {{topic}} and reach a conclusion before the timer ends."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A busy colleague checking the time",
+      "generate": "Ask the person to summarise {{topic}} in the next 60 seconds. One sentence only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 60,
+        "minSeconds": 35,
+        "silenceStopSeconds": 3
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          35,
+          60
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "finishing",
+        "label": "Finishing",
+        "criterion": "The answer reaches a real conclusion before the time limit. The final sentence wraps up the summary rather than stopping mid-point or trailing into a new idea."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 4 seconds",
+    "Finish between 35 seconds and 1 minute",
+    "Reach a real conclusion before the timer ends"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "strengths-and-weaknesses",
+  "track": "professional",
+  "title": "Interview: strengths and weaknesses",
+  "difficulty": 2,
+  "description": "Answer strengths and weakness questions in an interview, backing every claim with a specific example.",
+  "userInputs": [
+    {
+      "key": "role",
+      "label": "What role is the interview for?",
+      "type": "text",
+      "placeholder": "Product designer",
+      "required": true
+    }
+  ],
+  "brief": {
+    "scene": "You are partway through an interview for {{role}}. The interviewer moves on to your strengths.",
+    "yourGoal": "Back each claim with a specific example, including one real weakness and what you did about it."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A professional interviewer",
+      "generate": "Ask the candidate for {{role}} about their main strengths and ask them to give evidence. One or two sentences only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 25,
+        "silenceStopSeconds": 3
+      }
+    },
+    {
+      "index": 1,
+      "speaker": "ai",
+      "persona": "A professional interviewer",
+      "generate": "Ask for a real weakness and what the candidate has done about it. One or two sentences only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 25,
+        "silenceStopSeconds": 3
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          60,
+          170
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "evidence",
+        "label": "Claims backed by examples",
+        "criterion": "Every claim the speaker makes about a strength or weakness is backed by a specific instance, such as a named project, situation or result. The weakness is real, not a disguised strength, and includes an action taken."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 4 seconds",
+    "Finish between 1 minute and 2 min 50 sec",
+    "Back every claim with a specific example"
+  ]
+}

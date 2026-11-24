@@ -1,0 +1,90 @@
+{
+  "id": "give-difficult-feedback",
+  "track": "professional",
+  "title": "Give difficult feedback",
+  "difficulty": 4,
+  "description": "Tell a teammate about two missed deadlines, name the impact, and keep your point when they get defensive.",
+  "userInputs": [],
+  "brief": {
+    "scene": "A teammate has missed two deadlines. You are speaking to them one to one.",
+    "yourGoal": "Name the behaviour and its impact concretely, and do not retreat when they push back."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A teammate who is unaware of the problem",
+      "generate": "Open a casual one-to-one conversation as a teammate who does not know why you have been asked to talk. One or two sentences only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 25,
+        "silenceStopSeconds": 3
+      }
+    },
+    {
+      "index": 1,
+      "speaker": "ai",
+      "persona": "A teammate who becomes defensive",
+      "generate": "Respond defensively, pointing to workload or unclear requirements. Do not agree you were at fault. Two sentences at most. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 20,
+        "silenceStopSeconds": 3
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          45,
+          165
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "feedback",
+        "label": "Behaviour and impact, held under pressure",
+        "criterion": "The speaker names the specific behaviour (the missed deadlines) and its concrete impact, and does not retreat, apologise for raising it, or withdraw the point when the teammate becomes defensive."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 4 seconds",
+    "Finish between 45 seconds and 2 min 45 sec",
+    "Name the behaviour and its impact, and hold your point when pushed"
+  ]
+}

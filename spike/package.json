@@ -1,0 +1,22 @@
+{
+  "name": "rehearsal-spike",
+  "private": true,
+  "type": "module",
+  "description": "Phase 0 stack validation. Throwaway. Deleted when Phase 1 begins.",
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"node server.js\" \"vite\"",
+    "server": "node server.js",
+    "client": "vite"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "groq-sdk": "^0.37.0",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "vite": "^7.1.7"
+  }
+}

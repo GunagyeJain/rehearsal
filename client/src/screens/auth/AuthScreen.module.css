@@ -1,0 +1,58 @@
+.card {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.alert {
+  border-radius: var(--radius-md);
+}
+
+.alert:focus {
+  outline: none;
+}
+
+.alert:focus-visible {
+  outline: var(--focus-width) solid var(--text);
+  outline-offset: var(--focus-offset);
+}
+
+.inlineSwitch {
+  margin-top: calc(-1 * var(--space-3));
+  font-size: var(--size-sm);
+}
+
+.switch {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--border);
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.textButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-weight: var(--weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.textButton:hover:not(:disabled) {
+  text-decoration-thickness: var(--rule-width);
+}
+
+.textButton:disabled {
+  color: var(--text-faint);
+  cursor: not-allowed;
+}

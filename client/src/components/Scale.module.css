@@ -1,0 +1,89 @@
+.fieldset {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.legend {
+  padding: 0;
+  margin-bottom: var(--space-3);
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--touch-min), 1fr));
+  gap: var(--space-2);
+}
+
+.step {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: var(--control-lg);
+  background: var(--bg-raised);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--duration-state) var(--ease-out),
+    border-color var(--duration-state) var(--ease-out),
+    color var(--duration-state) var(--ease-out),
+    transform var(--duration-state) var(--ease-out);
+}
+
+.step:hover {
+  border-color: var(--border-strong);
+}
+
+.step:active {
+  transform: scale(0.97);
+}
+
+.step:has(.input:focus-visible) {
+  outline: var(--focus-width) solid var(--text);
+  outline-offset: var(--focus-offset);
+}
+
+/* Filled and bold when chosen: shape and weight carry the state, not colour. */
+.checked,
+.checked:hover {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.number {
+  font-family: var(--font-numeric);
+  font-size: var(--size-md);
+  font-variant-numeric: tabular-nums;
+}
+
+.checked .number {
+  font-weight: var(--weight-semibold);
+}
+
+.ends {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+}
+
+.ends > span:last-child {
+  text-align: right;
+}

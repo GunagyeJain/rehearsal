@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="system" data-font="serif">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Rehearse the conversations that matter. Speak, get measured, improve." />
+    <meta name="color-scheme" content="light dark" />
+    <!-- First-paint chrome colour per system scheme (light and dark --bg). ThemeProvider then
+         sets every theme-color meta to the active --bg, including a manual theme override. -->
+    <meta name="theme-color" content="#FAF9F6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1B1917" media="(prefers-color-scheme: dark)" />
+
+    <!-- PWA and home-screen install. -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icons/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" sizes="180x180" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Rehearsal" />
+    <meta name="application-name" content="Rehearsal" />
+
+    <title>Rehearsal</title>
+
+    <!-- Apply stored appearance before first paint so there is no theme flash. -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem('rehearsal.appearance');
+          if (!raw) return;
+          var a = JSON.parse(raw);
+          var el = document.documentElement;
+          if (a.theme === 'light' || a.theme === 'dark' || a.theme === 'system') el.dataset.theme = a.theme;
+          if (a.font === 'serif' || a.font === 'sans' || a.font === 'mono') el.dataset.font = a.font;
+          // A manual theme overrides the per-scheme theme-color until ThemeProvider takes over.
+          var chrome = a.theme === 'light' ? '#FAF9F6' : a.theme === 'dark' ? '#1B1917' : null;
+          if (chrome) {
+            var metas = document.querySelectorAll('meta[name="theme-color"]');
+            for (var i = 0; i < metas.length; i++) metas[i].setAttribute('content', chrome);
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root">
+      <noscript>Rehearsal needs JavaScript to record and play back your answers.</noscript>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

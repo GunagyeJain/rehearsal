@@ -1,0 +1,86 @@
+{
+  "id": "tell-me-about-yourself",
+  "track": "fundamentals",
+  "title": "Tell me about yourself",
+  "difficulty": 2,
+  "description": "Answer the opening interview question, aimed at the specific role or programme you are applying to.",
+  "userInputs": [
+    {
+      "key": "role",
+      "label": "What role or programme are you applying to?",
+      "type": "text",
+      "placeholder": "Junior data analyst",
+      "required": true
+    }
+  ],
+  "brief": {
+    "scene": "You are in a formal interview for {{role}}. This is the first question.",
+    "yourGoal": "Answer in under two minutes, aimed at the role, not your whole life story."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A formal interviewer opening the interview",
+      "generate": "Welcome the candidate to the interview for {{role}} and ask them to tell you about themselves. One or two sentences only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 120,
+        "minSeconds": 30,
+        "silenceStopSeconds": 3
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          40,
+          120
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "relevance",
+        "label": "Relevance to the role",
+        "criterion": "The answer is aimed at the stated role or programme. Most of what the speaker says connects to why they suit it; personal background appears only where it supports that case."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 4 seconds",
+    "Finish between 40 seconds and 2 minutes",
+    "Aim your answer at the role, not your whole life story"
+  ]
+}

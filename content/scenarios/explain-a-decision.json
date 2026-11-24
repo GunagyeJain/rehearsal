@@ -1,0 +1,90 @@
+{
+  "id": "explain-a-decision",
+  "track": "fundamentals",
+  "title": "Explain a decision you made",
+  "difficulty": 3,
+  "description": "Justify a recent choice and say what you would have done if it had not worked.",
+  "userInputs": [],
+  "brief": {
+    "scene": "You are in a one-to-one conversation. You have been asked to justify a choice you made recently: a tool, an approach, or a plan.",
+    "yourGoal": "State the decision, give your reasons as a trade-off, and answer the challenge."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A direct but fair colleague",
+      "generate": "Ask the person to pick one recent decision, such as a tool, an approach or a plan, and explain what they chose and why. One or two sentences only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 25,
+        "silenceStopSeconds": 3
+      }
+    },
+    {
+      "index": 1,
+      "speaker": "ai",
+      "persona": "A direct but fair colleague",
+      "generate": "Challenge the person by asking what they would have done if their choice had not worked. Refer to it only as that choice. One question only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 20,
+        "silenceStopSeconds": 3
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          45,
+          170
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "tradeoff",
+        "label": "Reasoning as a trade-off",
+        "criterion": "The reasoning is stated as a trade-off: the speaker names what they gave up or what the alternatives were, not just an assertion that the choice was good. The answer to the challenge names a concrete fallback."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 4 seconds",
+    "Finish between 45 seconds and 2 min 50 sec",
+    "Give your reasoning as a trade-off, and name a fallback when challenged"
+  ]
+}

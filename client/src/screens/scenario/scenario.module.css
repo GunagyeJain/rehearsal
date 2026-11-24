@@ -1,0 +1,102 @@
+/* Setup and brief screens. Tokens only (spec/design.md). */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+}
+
+.brief {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.scene {
+  margin: 0;
+  max-width: var(--measure-lead);
+  font-family: var(--font-serif);
+  font-size: var(--size-xl);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text);
+}
+
+.label {
+  margin: 0 0 var(--space-3);
+  font-size: var(--size-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.goal {
+  padding-left: var(--space-4);
+  border-left: var(--rule-width) solid var(--border-strong);
+}
+
+.goalText {
+  margin: 0;
+  font-size: var(--size-lg);
+  line-height: var(--leading-snug);
+}
+
+.criteria {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.criterion {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  line-height: var(--leading-snug);
+}
+
+.criterionIcon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--space-6);
+  height: var(--space-6);
+  border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+  color: var(--text-muted);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  margin: 0;
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--border);
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.metaItem dt {
+  display: flex;
+}
+
+.metaItem dd {
+  margin: 0;
+}

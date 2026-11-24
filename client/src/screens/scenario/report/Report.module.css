@@ -1,0 +1,285 @@
+/* Report screen. Tokens only. */
+
+.report {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.label {
+  margin: 0 0 var(--space-3);
+  font-size: var(--size-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------- verdict */
+
+.verdict {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  column-gap: var(--space-3);
+}
+
+/* Centres the icon on the cap height of the 2xl verdict line. */
+.verdictIcon {
+  align-self: start;
+  display: grid;
+  place-items: center;
+  height: calc(var(--size-2xl) * var(--leading-tight));
+}
+
+.verdictPassed {
+  color: var(--pass);
+}
+
+.verdictNotYet {
+  color: var(--text-muted);
+}
+
+.verdictText {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--size-2xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--text);
+}
+
+.verdictCount {
+  margin: var(--space-1) 0 0;
+  font-family: var(--font-numeric);
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+}
+
+.verdictPending {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--control-lg);
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------- strength and next action */
+
+.strength {
+  padding-left: var(--space-4);
+  border-left: var(--rule-width) solid var(--pass);
+}
+
+.strengthText {
+  margin: 0;
+  max-width: var(--measure-lead);
+  line-height: var(--leading-body);
+}
+
+.next {
+  padding: var(--space-6);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raised);
+  box-shadow: var(--shadow-raised);
+}
+
+.nextText {
+  margin: 0;
+  max-width: var(--measure-title);
+  font-size: var(--size-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+
+@media (max-width: 30rem) {
+  .nextText {
+    font-size: var(--size-lg);
+  }
+
+  .next {
+    padding: var(--space-5);
+  }
+}
+
+/* ---------------------------------------------------------- criteria */
+
+.criteria {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--border-width) solid var(--border);
+}
+
+.criterion {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+  border-bottom: var(--border-width) solid var(--border);
+}
+
+.criterionIcon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+}
+
+.met .criterionIcon {
+  color: var(--pass);
+}
+
+.notMet .criterionIcon {
+  color: var(--fail);
+}
+
+.pending .criterionIcon {
+  color: var(--text-faint);
+}
+
+.criterionText {
+  min-width: 0;
+}
+
+.criterionLabel {
+  margin: 0;
+  font-weight: var(--weight-semibold);
+}
+
+.criterionDetail {
+  margin: var(--space-1) 0 0;
+  font-size: var(--size-sm);
+  line-height: var(--leading-snug);
+  color: var(--text-muted);
+}
+
+.mayChange {
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------- recordings */
+
+.recordings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.playback {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.playbackHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.playbackLabel {
+  font-weight: var(--weight-semibold);
+}
+
+.quiet {
+  margin: 0;
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------- transcript */
+
+.transcriptSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+/* A ghost button keeps its hit area but its icon lines up with the text column above. */
+.transcriptToggle {
+  margin-inline-start: calc(var(--space-5) * -1);
+}
+
+.transcriptSection > div {
+  width: 100%;
+}
+
+.transcript {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.transcriptTurn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.transcriptLine {
+  margin: 0;
+  padding-left: var(--space-3);
+  border-left: var(--rule-width) solid var(--border);
+  line-height: var(--leading-body);
+}
+
+.transcriptAi {
+  border-left-color: var(--speaker-ai);
+  color: var(--text-muted);
+}
+
+.transcriptUser {
+  border-left-color: var(--speaker-user);
+}
+
+.transcriptSpeaker {
+  display: block;
+  font-size: var(--size-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.word {
+  border-radius: var(--radius-sm);
+}
+
+.filler {
+  text-decoration: underline wavy var(--fail);
+  text-underline-offset: var(--space-1);
+}
+
+.highlight {
+  background: var(--selection);
+  color: var(--text);
+  outline: var(--rule-width) solid var(--text);
+  outline-offset: var(--border-width);
+}
+
+/* ---------------------------------------------------------- actions */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--border);
+}
+
+.skipHint {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--size-sm);
+}

@@ -1,0 +1,98 @@
+{
+  "id": "handle-a-question-you-cannot-answer",
+  "track": "fundamentals",
+  "title": "Handle a question you cannot answer",
+  "difficulty": 4,
+  "description": "Admit a gap in your knowledge calmly, then explain how you would find the answer.",
+  "userInputs": [
+    {
+      "key": "field",
+      "label": "What do you study or work in?",
+      "type": "text",
+      "placeholder": "Mechanical engineering",
+      "required": true
+    }
+  ],
+  "brief": {
+    "scene": "You are in an interview. The interviewer asks something in {{field}} that is genuinely outside what you know.",
+    "yourGoal": "Say plainly what you do not know, then explain how you would find out."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A sharp but fair interviewer",
+      "generate": "Ask one hard, specialised question in {{field}} that a capable newcomer is unlikely to know. One question only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 60,
+        "minSeconds": 15,
+        "silenceStopSeconds": 3
+      }
+    },
+    {
+      "index": 1,
+      "speaker": "ai",
+      "persona": "A sharp but fair interviewer",
+      "generate": "Ask the person what they would do to find out the answer. One short question only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 60,
+        "minSeconds": 15,
+        "silenceStopSeconds": 3
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          30,
+          115
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "gap",
+        "label": "Admit the gap, then redirect",
+        "criterion": "The speaker admits the gap in a sentence without collapsing into apology or bluffing, then redirects to a concrete method for finding the answer, such as what they would read, who they would ask, or what they would test."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 4 seconds",
+    "Finish between 30 seconds and 1 min 55 sec",
+    "Admit the gap in one sentence, then explain how you would find the answer"
+  ]
+}

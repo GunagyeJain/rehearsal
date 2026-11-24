@@ -1,0 +1,98 @@
+{
+  "id": "explain-a-delay",
+  "track": "professional",
+  "title": "Explain a delay to a manager",
+  "difficulty": 3,
+  "description": "Give your manager a status update on late work, lead with the facts, and commit to a date.",
+  "userInputs": [
+    {
+      "key": "thing",
+      "label": "What is late?",
+      "type": "text",
+      "placeholder": "The reporting dashboard",
+      "required": true
+    }
+  ],
+  "brief": {
+    "scene": "Your manager has asked for a status update on {{thing}}, which is behind schedule.",
+    "yourGoal": "Lead with the facts, not the excuse, and finish with a commitment."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A direct, time-pressed manager",
+      "generate": "Ask for a status update on {{thing}}. One sentence only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 20,
+        "silenceStopSeconds": 3
+      }
+    },
+    {
+      "index": 1,
+      "speaker": "ai",
+      "persona": "A direct, time-pressed manager",
+      "generate": "Ask when it will be done. One short sentence only. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 60,
+        "minSeconds": 10,
+        "silenceStopSeconds": 3
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          35,
+          140
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "commitment",
+        "label": "Facts first, then a commitment",
+        "criterion": "The first answer leads with the fact that the work is late and by how much, not with excuses. The second answer ends with a specific commitment, a date or a clear next milestone."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 4 seconds",
+    "Finish between 35 seconds and 2 min 20 sec",
+    "Lead with the fact, not the excuse, and end with a date"
+  ]
+}

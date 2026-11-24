@@ -1,0 +1,21 @@
+/* Suspense fallback while a route chunk loads. Blank at first; a spinner fades in only if the
+   load is slow, so a fast load never flashes anything. */
+
+.fallback {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: var(--space-6);
+}
+
+.spinner {
+  opacity: 0;
+  animation: appear var(--duration-screen) var(--ease-out) var(--delay-quiet) forwards;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}

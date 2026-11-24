@@ -1,0 +1,97 @@
+/* Home: the path. Tokens only (spec/design.md). */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+/* "4 of 10": a count, not a percentage bar. */
+.count {
+  margin: 0;
+  font-family: var(--font-numeric);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+.countValue {
+  font-size: var(--size-xl);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+}
+
+.countOf {
+  font-size: var(--size-sm);
+}
+
+/* ---------------------------------------------------------- complete */
+
+.complete {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  border-color: var(--pass);
+}
+
+.completeEyebrow {
+  margin: 0;
+  font-size: var(--size-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.completeTitle {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--size-xl);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.completeBody {
+  margin: 0;
+  max-width: var(--measure-lead);
+  color: var(--text-muted);
+}
+
+.completeAction {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--space-2);
+  min-height: var(--touch-min);
+  margin-top: var(--space-2);
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--text);
+  color: var(--bg);
+  font-size: var(--size-sm);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------- footer */
+
+.footerNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-min);
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--duration-state) var(--ease-out);
+}
+
+.footerLink:hover {
+  color: var(--text);
+}

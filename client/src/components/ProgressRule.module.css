@@ -1,0 +1,23 @@
+.rule {
+  position: relative;
+  width: 100%;
+  height: var(--rule-width);
+  background: var(--border);
+  overflow: hidden;
+}
+
+.fixed {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-progress);
+}
+
+/* Scaled rather than resized so it animates on the compositor. */
+.fill {
+  position: absolute;
+  inset: 0;
+  background: var(--text);
+  transform-origin: left center;
+  transform: scaleX(var(--progress));
+  transition: transform var(--duration-screen) var(--ease-out);
+}

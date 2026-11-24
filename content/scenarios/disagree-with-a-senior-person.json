@@ -1,0 +1,90 @@
+{
+  "id": "disagree-with-a-senior-person",
+  "track": "professional",
+  "title": "Disagree with a senior person",
+  "difficulty": 4,
+  "description": "Object to a senior colleague's proposal, stay specific, and hold your position when they push back.",
+  "userInputs": [],
+  "brief": {
+    "scene": "A senior colleague has proposed an approach you think is wrong. The room is waiting for your response.",
+    "yourGoal": "Object to the idea, specifically and without hedging, and hold your position under pushback."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A confident senior colleague",
+      "generate": "State a plausible proposal for a workplace project in the first person, such as a tool, process or schedule choice that has a real flaw. Ask what the person thinks. Two sentences at most. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 20,
+        "silenceStopSeconds": 3
+      }
+    },
+    {
+      "index": 1,
+      "speaker": "ai",
+      "persona": "A confident senior colleague",
+      "generate": "Push back on the objection with a line that includes the phrase: We have always done it this way. Do not repeat the original proposal. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 20,
+        "silenceStopSeconds": 3
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          45,
+          165
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "disagree",
+        "label": "Specific, unhedged disagreement",
+        "criterion": "The disagreement is specific, stating what is wrong and why, without hedging phrases that dilute it. It stays on the idea rather than the person, and the speaker does not simply give way when pushed."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 4 seconds",
+    "Finish between 45 seconds and 2 min 45 sec",
+    "Object to the idea specifically, stay on the idea, and hold your position"
+  ]
+}

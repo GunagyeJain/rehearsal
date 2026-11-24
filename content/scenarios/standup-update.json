@@ -1,0 +1,86 @@
+{
+  "id": "standup-update",
+  "track": "professional",
+  "title": "Standup update",
+  "difficulty": 1,
+  "description": "Give a short daily standup update covering what is done, what is next, and any blockers.",
+  "userInputs": [
+    {
+      "key": "work",
+      "label": "What are you currently working on?",
+      "type": "text",
+      "placeholder": "Login page redesign",
+      "required": true
+    }
+  ],
+  "brief": {
+    "scene": "It is the daily standup. Six people are waiting. You are next, and your current work is {{work}}.",
+    "yourGoal": "Cover done, next and blockers in under 45 seconds, then stop."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A team lead running the standup",
+      "generate": "Call on the person for their update. One sentence only. Do not ask any follow-up. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 60,
+        "minSeconds": 20,
+        "silenceStopSeconds": 2
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 3
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          25,
+          50
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "dnb",
+        "label": "Done, next, blockers",
+        "criterion": "The update covers what is done, what is next, and any blockers (or states there are none), in a few sentences, and then stops without extra background or repetition."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 3 seconds",
+    "Finish between 25 seconds and 50 seconds",
+    "Cover done, next and blockers, then stop"
+  ]
+}

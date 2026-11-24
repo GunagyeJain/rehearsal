@@ -1,0 +1,72 @@
+.trend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.label {
+  font-size: var(--size-xs);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+}
+
+.value {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-numeric);
+  font-size: var(--size-md);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.met {
+  display: inline-flex;
+  color: var(--pass);
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.band {
+  fill: var(--bg-sunken);
+  stroke: var(--border);
+  stroke-width: var(--border-width);
+  vector-effect: non-scaling-stroke;
+}
+
+.line {
+  fill: none;
+  stroke: var(--text-faint);
+  stroke-width: var(--rule-width);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.point {
+  fill: var(--text-faint);
+}
+
+.latest {
+  fill: var(--text);
+}
+
+.description {
+  margin: 0;
+  font-size: var(--size-sm);
+  line-height: var(--leading-snug);
+  color: var(--text-muted);
+}

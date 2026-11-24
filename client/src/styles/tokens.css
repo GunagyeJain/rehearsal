@@ -1,0 +1,200 @@
+/*
+ * Design tokens. Source of truth: spec/design.md.
+ * Components reference these custom properties only. A raw hex, px font size or
+ * arbitrary spacing value outside this file is a bug.
+ */
+
+/* ------------------------------------------------------------ theme-independent */
+:root {
+  /* Typography: stacks */
+  --font-serif: 'Anthropic Serif', 'Source Serif 4', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  /* The user's chosen stack. Overridden by [data-font]. Serif is the default. */
+  --font-body: var(--font-serif);
+  /* Numerals in metrics and timers stay tabular whatever the body stack is. */
+  --font-numeric: var(--font-mono);
+
+  /* Typography: scale (fixed ratio, no in-between values) */
+  --size-xs: 0.8125rem;
+  --size-sm: 0.9375rem;
+  --size-md: 1.0625rem;
+  --size-lg: 1.375rem;
+  --size-xl: 1.875rem;
+  --size-2xl: 2.5rem;
+
+  --leading-body: 1.6;
+  --leading-tight: 1.25;
+  --leading-snug: 1.4;
+
+  --weight-regular: 400;
+  --weight-semibold: 600;
+
+  --tracking-label: 0.06em;
+  --tracking-tight: -0.01em;
+
+  /* Spacing: 4px base */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 2.5rem;
+  --space-9: 3rem;
+  --space-10: 4rem;
+  --space-11: 5rem;
+  --space-12: 6rem;
+
+  /* Radius. Nothing fully rounded except the record control. */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-round: 999px;
+
+  /* Lines */
+  --border-width: 1px;
+  --rule-width: 2px;
+  --focus-width: 2px;
+  --focus-offset: 2px;
+
+  /* Layout */
+  --measure: 42rem;
+  --measure-wide: 60rem;
+  --measure-dialog: 28rem;
+  --measure-live-line: 22ch;
+  --measure-lead: 36rem;
+  --measure-title: 28ch;
+  --measure-short: 36ch;
+  --touch-min: 2.75rem;
+  --control-lg: 3.25rem;
+  --icon-size: 20px;
+  /* Nudges an inline icon down to sit on the first line of text beside it. */
+  --icon-optical-offset: 0.15em;
+  --icon-size-sm: 16px;
+  --icon-size-lg: 24px;
+  --header-height: 3.75rem;
+
+  /* Motion */
+  --duration-state: 160ms;
+  --duration-lift: 200ms;
+  --duration-screen: 240ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --spin-duration: 900ms;
+  /* A loading indicator waits this long before showing, so fast loads never flash one. */
+  --delay-quiet: 400ms;
+
+  /* Effects */
+  --blur-scrim: 2px;
+
+  /* Stacking */
+  --z-header: 10;
+  --z-progress: 20;
+  --z-dialog: 100;
+}
+
+/* ------------------------------------------------------------ light (default) */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #faf9f6;
+  --bg-raised: #ffffff;
+  --bg-sunken: #f2f0eb;
+  --border: #e3e0d8;
+  --border-strong: #cfcbc0;
+  --text: #1c1b19;
+  --text-muted: #6b6862;
+  --text-faint: #86827a;
+
+  --speaker-ai: #5b8dbe;
+  --speaker-user: #6ba368;
+  --warn: #c99a3e;
+  --fail: #c0614f;
+  --pass: #6ba368;
+
+  --scrim: color-mix(in srgb, var(--text) 32%, transparent);
+  --shadow-raised: 0 1px 2px color-mix(in srgb, var(--text) 5%, transparent),
+    0 8px 24px color-mix(in srgb, var(--text) 6%, transparent);
+  --shadow-dialog: 0 2px 6px color-mix(in srgb, var(--text) 8%, transparent),
+    0 24px 64px color-mix(in srgb, var(--text) 16%, transparent);
+  --selection: color-mix(in srgb, var(--speaker-ai) 24%, transparent);
+}
+
+/* ------------------------------------------------------------ dark */
+/* The five semantic colours are lightened about 8% for contrast on dark surfaces. */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #1b1917;
+  --bg-raised: #24211e;
+  --bg-sunken: #141210;
+  --border: #35312c;
+  --border-strong: #4a453e;
+  --text: #edeae4;
+  --text-muted: #a39d93;
+  --text-faint: #6f6a62;
+
+  --speaker-ai: #78a1ca;
+  --speaker-user: #84b382;
+  --warn: #d2ab5e;
+  --fail: #cb7c6d;
+  --pass: #84b382;
+
+  --scrim: color-mix(in srgb, var(--bg-sunken) 72%, transparent);
+  --shadow-raised: 0 1px 2px color-mix(in srgb, black 30%, transparent),
+    0 8px 24px color-mix(in srgb, black 24%, transparent);
+  --shadow-dialog: 0 2px 6px color-mix(in srgb, black 40%, transparent),
+    0 24px 64px color-mix(in srgb, black 48%, transparent);
+  --selection: color-mix(in srgb, var(--speaker-ai) 34%, transparent);
+}
+
+/* ------------------------------------------------------------ system */
+@media (prefers-color-scheme: dark) {
+  [data-theme='system'] {
+    color-scheme: dark;
+
+    --bg: #1b1917;
+    --bg-raised: #24211e;
+    --bg-sunken: #141210;
+    --border: #35312c;
+    --border-strong: #4a453e;
+    --text: #edeae4;
+    --text-muted: #a39d93;
+    --text-faint: #6f6a62;
+
+    --speaker-ai: #78a1ca;
+    --speaker-user: #84b382;
+    --warn: #d2ab5e;
+    --fail: #cb7c6d;
+    --pass: #84b382;
+
+    --scrim: color-mix(in srgb, var(--bg-sunken) 72%, transparent);
+    --shadow-raised: 0 1px 2px color-mix(in srgb, black 30%, transparent),
+      0 8px 24px color-mix(in srgb, black 24%, transparent);
+    --shadow-dialog: 0 2px 6px color-mix(in srgb, black 40%, transparent),
+      0 24px 64px color-mix(in srgb, black 48%, transparent);
+    --selection: color-mix(in srgb, var(--speaker-ai) 34%, transparent);
+  }
+}
+
+/* ------------------------------------------------------------ font stacks */
+[data-font='serif'] {
+  --font-body: var(--font-serif);
+}
+[data-font='sans'] {
+  --font-body: var(--font-sans);
+}
+[data-font='mono'] {
+  --font-body: var(--font-mono);
+}
+
+/* ------------------------------------------------------------ reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-state: 0ms;
+    --duration-lift: 0ms;
+    --duration-screen: 0ms;
+  }
+}

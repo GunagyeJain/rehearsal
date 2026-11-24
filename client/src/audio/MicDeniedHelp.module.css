@@ -1,0 +1,12 @@
+.helpLead {
+  margin: 0 0 var(--space-2);
+}
+
+.helpSteps {
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.helpSteps li + li {
+  margin-top: var(--space-1);
+}

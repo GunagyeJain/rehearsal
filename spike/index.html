@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rehearsal - Phase 0 spike</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      /* Deliberately unstyled. Design tokens arrive in Phase 1. */
+      body { font-family: ui-monospace, monospace; margin: 24px; max-width: 900px; }
+      canvas { border: 1px solid #999; display: block; width: 100%; height: 140px; }
+      button { padding: 8px 14px; margin: 2px 4px 2px 0; font-family: inherit; }
+      pre { background: #f4f4f4; padding: 10px; overflow-x: auto; white-space: pre-wrap; font-size: 12px; }
+      section { border-top: 1px solid #ccc; padding-top: 12px; margin-top: 20px; }
+      .row { margin: 8px 0; }
+      label { margin-right: 12px; }
+    </style>
+  </head>
+  <body>
+    <h1>Phase 0 spike</h1>
+    <p id="health">checking server...</p>
+
+    <section>
+      <h2>Spike 1 + 2 + 5 - record, transcribe, metrics, waveform</h2>
+      <div class="row">
+        <label><input type="checkbox" id="verbatim" /> verbatim prompt bias</label>
+        <label><input type="checkbox" id="rawAudio" checked /> raw mic (no noise suppression / AGC)</label>
+        <label>model
+          <select id="sttModel">
+            <option>whisper-large-v3-turbo</option>
+            <option>whisper-large-v3</option>
+          </select>
+        </label>
+      </div>
+      <div class="row">
+        <button id="rec">Start recording</button>
+        <button id="stop" disabled>Stop and transcribe</button>
+        <span id="timer"></span>
+      </div>
+      <p><b>Sample A (filler test):</b> "So, um, I basically, like, built this thing, uh, you know, for tracking, I mean, expenses."<br />
+         <b>Sample B (normal):</b> any natural 60-second answer.</p>
+      <canvas id="wave"></canvas>
+      <p id="legend">red = filler &nbsp; amber foot = ambiguous &nbsp; amber wash = pause &gt; 2s</p>
+      <pre id="sttOut">no recording yet</pre>
+    </section>
+
+    <section>
+      <h2>Spike 1b - STT bake-off</h2>
+      <p>Type what you are <b>about to say</b> into the reference box, then record it.
+         Every engine transcribes the same audio and is scored against that reference.
+         <b>Word timestamps are a hard gate</b> - an engine without them cannot score a
+         scenario at all, whatever its accuracy.</p>
+
+      <div class="row"><span id="sttEngines">loading engines...</span></div>
+      <div class="row">
+        <label><input type="checkbox" id="compareStt" checked /> run the bake-off on the next recording</label>
+      </div>
+      <div class="row">
+        <label style="display:block">reference - what you actually said
+          <textarea id="sttReference" rows="3" style="width:100%; font-family:inherit; font-size:12px;"
+>So, um, I basically, like, built this thing, uh, you know, for tracking, I mean, expenses.</textarea>
+        </label>
+      </div>
+      <div id="sttTable"></div>
+      <pre id="compareOut">not run</pre>
+    </section>
+
+    <section>
+      <h2>Spike 3 - TTS (Groq orpheus)</h2>
+      <p>Kokoro-82M was evaluated and rejected: Groq reached ready about 4x faster
+         and sounded better in a blind A/B.</p>
+
+      <div class="row">
+        <label>interviewer says
+          <input id="ttsText" size="60"
+                 value="Thanks. Can you tell me about a time that project did not go to plan?" />
+        </label>
+      </div>
+      <div class="row">
+        <label>voice
+          <select id="ttsVoice">
+            <option>autumn</option><option>diana</option><option>hannah</option>
+            <option>austin</option><option>daniel</option><option>troy</option>
+          </select>
+        </label>
+        <button id="tts">Speak</button>
+        <button id="replayTts" disabled>Replay</button>
+        <button id="listModels">List Groq models</button>
+        <span id="playOut"></span>
+      </div>
+
+      <pre id="ttsOut">not run</pre>
+    </section>
+
+    <section>
+      <h2>Spike 4 - Claude verdict stability</h2>
+      <div class="row">
+        <label>thinking
+          <select id="thinking">
+            <option value="adaptive">adaptive (default)</option>
+            <option value="disabled">disabled</option>
+          </select>
+        </label>
+        <label>effort
+          <select id="effort">
+            <option>low</option>
+            <option selected>medium</option>
+            <option>high</option>
+          </select>
+        </label>
+        <button id="judge">Run 5 identical judgements</button>
+      </div>
+      <pre id="judgeOut">not run</pre>
+    </section>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

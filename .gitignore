@@ -1,2 +1,16 @@
 /CLAUDE.md
 /spec
+
+node_modules
+.env
+.env.*
+!.env.example
+dist
+coverage
+*.tsbuildinfo
+
+# spike scratch audio
+spike/*.wav
+
+# local mongo data
+.data

@@ -1,0 +1,105 @@
+{
+  "id": "salary-or-offer-conversation",
+  "track": "professional",
+  "title": "Salary or offer conversation",
+  "difficulty": 5,
+  "description": "Respond to a job offer below your target by naming a number and giving a reason.",
+  "userInputs": [
+    {
+      "key": "role",
+      "label": "What is the role?",
+      "type": "text",
+      "placeholder": "Backend engineer",
+      "required": true
+    },
+    {
+      "key": "targetFigure",
+      "label": "What figure do you want?",
+      "type": "text",
+      "placeholder": "60,000 per year",
+      "required": true
+    }
+  ],
+  "brief": {
+    "scene": "An offer for {{role}} has come in below what you wanted. The recruiter is on the call.",
+    "yourGoal": "Name a number, give a reason for it, and do not apologise for asking."
+  },
+  "turns": [
+    {
+      "index": 0,
+      "speaker": "ai",
+      "persona": "A polite, professional recruiter",
+      "generate": "State a job offer for {{role}} with a figure roughly 10 to 15 percent below {{targetFigure}}, in the same currency and unit. Ask for the candidate's thoughts. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 20,
+        "silenceStopSeconds": 3
+      }
+    },
+    {
+      "index": 1,
+      "speaker": "ai",
+      "persona": "A polite, professional recruiter",
+      "generate": "Say that this is the top of the band for the role. Do not offer more. Two sentences at most. Reply with one spoken line under 40 words. No stage directions, no markdown, no preamble.",
+      "dependsOnPreviousAnswer": false,
+      "userResponse": {
+        "maxSeconds": 90,
+        "minSeconds": 20,
+        "silenceStopSeconds": 3
+      }
+    }
+  ],
+  "rubric": {
+    "objective": [
+      {
+        "id": "fillers",
+        "label": "Filler words",
+        "metric": "fillersPerMinute",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "pace",
+        "label": "Speaking pace",
+        "metric": "wpm",
+        "op": "between",
+        "value": [
+          120,
+          170
+        ]
+      },
+      {
+        "id": "pauses",
+        "label": "Long pauses",
+        "metric": "longestPauseSec",
+        "op": "lte",
+        "value": 4
+      },
+      {
+        "id": "duration",
+        "label": "Length",
+        "metric": "durationSec",
+        "op": "between",
+        "value": [
+          45,
+          165
+        ]
+      }
+    ],
+    "judged": [
+      {
+        "id": "ask",
+        "label": "Number, reason, no apology",
+        "criterion": "The speaker names a specific number, gives a reason for it, and does not apologise for asking. They keep their position after being told it is the top of the band, without becoming hostile."
+      }
+    ]
+  },
+  "criteriaDisplay": [
+    "Keep filler words under 4 per minute",
+    "Speak between 120 and 170 words per minute",
+    "No pause longer than 4 seconds",
+    "Finish between 45 seconds and 2 min 45 sec",
+    "Name a number, give a reason, and do not apologise for asking"
+  ]
+}
